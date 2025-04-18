@@ -1,16 +1,3 @@
-// prisma/schema.prisma
-
-generator client {
-  provider = "prisma-client-js"
-  output   = "./node_modules/@prisma/client"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-
 model Chore {
   id          Int      @id @default(autoincrement())
   title       String

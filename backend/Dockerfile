@@ -1,25 +1,38 @@
-FROM node:20
-
+#######################################
+# Stage 1: Build + generate Prisma
+#######################################
+FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy package files and prisma directory first
+# 1) Install deps (including @prisma/client)
 COPY package*.json ./
-COPY prisma ./prisma
+RUN npm ci
 
-# Install dependencies
-RUN npm install
-
-# Generate Prisma client
+# 2) Copy schema + env, then generate
+COPY prisma     ./prisma
+COPY .env       .env
 RUN npx prisma generate
 
-# Copy the rest of the application
-COPY . .
-
-# Build your application
+# 3) Copy the rest of your source & build
+COPY tsconfig.json ./
+COPY src           ./src
 RUN npm run build
 
-# Make sure your DATABASE_URL environment variable is accessible
-# You can either define it here or pass it when running the container
 
-# Start the application
+#######################################
+# Stage 2: Final runtime image
+#######################################
+FROM node:20-alpine
+WORKDIR /app
+
+# 1) Copy package.json to get production deps…
+COPY package*.json ./
+RUN npm ci --production
+
+# 2) Pull in the built JS and the already‑generated Prisma client
+COPY --from=builder /app/dist          ./dist
+COPY --from=builder /app/node_modules  ./node_modules
+# (optional) if you need migrations at runtime:
+# COPY --from=builder /app/prisma      ./prisma
+
 CMD ["node", "dist/index.js"]

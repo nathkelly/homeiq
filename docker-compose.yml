@@ -3,34 +3,19 @@ services:
     build: ./backend
     ports:
       - "3001:3001"
-    # volumes:
-    #  - ./backend:/app
-    working_dir: /app
-    command: node dist/index.js
+    depends_on:
+      - db
     environment:
       - PORT=3001
-
-  frontend:
-    build: ./frontend
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/app
-    environment:
-      - NEXT_PUBLIC_BACKEND_URL=http://localhost:3001
+    env_file:
+      - ./backend/.env
+    command: node dist/index.js
 
   db:
     image: postgres:15
-    container_name: homeiq-db
-    restart: always
     environment:
       POSTGRES_USER: homeiq
       POSTGRES_PASSWORD: homeiqpassword
       POSTGRES_DB: homeiq
     ports:
       - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-
-volumes:
-  pgdata:

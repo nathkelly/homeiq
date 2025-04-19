@@ -1,53 +1,33 @@
-# syntax=docker/dockerfile:1
+# Stage 1: Build
+FROM node:18 AS builder
 
-############################################
-# Stage 1: build + generate Prisma client #
-############################################
-FROM node:20-alpine AS builder
 WORKDIR /app
 
-# 1) Install all dependencies (incl. Prisma CLI)
-COPY package.json package-lock.json ./
-RUN npm ci
+# Install dependencies
+COPY backend/package*.json ./
+RUN npm install
 
-# 2) Copy Prisma schema + env, then inspect & generate
-COPY prisma   ./prisma
-COPY .env     .env
+# Copy all backend source
+COPY backend .
 
-# ── DEBUG: verify files and env var ───────────────────────────────────────────────
-RUN echo "⏱  /app contents:" \
-    && ls -R /app \
-    && echo "⏱  .env contents:" \
-    && cat .env
+# Generate Prisma client
+RUN npx prisma generate --schema=./prisma/schema.prisma
 
-# ── DEBUG: generate and peek at the client stub/header ───────────────────────────
-RUN echo "⏱  Running prisma generate…" \
-    && npx prisma generate \
-    && echo "⏱  First 15 lines of default.js:" \
-    && head -n 15 node_modules/.prisma/client/default.js
+# Build the TypeScript code if needed (optional)
+# RUN npm run build
 
-# 3) Copy source & compile
-COPY tsconfig.json ./
-COPY src           ./src
-RUN npm run build
+# Stage 2: Runtime
+FROM node:18-slim AS runner
 
-
-##################################
-# Stage 2: final runtime image   #
-##################################
-FROM node:20-alpine
 WORKDIR /app
 
-# 1) Install only production deps
-COPY --from=builder /app/package.json      ./
-COPY --from=builder /app/package-lock.json ./
-RUN npm ci --omit=dev
-
-# 2) Copy in your compiled app + generated client
-COPY --from=builder /app/dist         ./dist
+# Only copy built app and dependencies (omit dev tools)
+COPY --from=builder /app /app
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/prisma ./prisma
 
-# 3) Launch
-EXPOSE 3001
-CMD ["node", "dist/index.js"]
+# Optionally run migration and seed (uncomment if you want this built-in)
+# RUN npx prisma migrate deploy --schema=./prisma/schema.prisma && \
+#     npx ts-node prisma/seed.ts
+
+# Start the server
+CMD ["npm", "run", "start"]

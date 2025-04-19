@@ -20,9 +20,7 @@ export default function ThisWeeksChores() {
   useEffect(() => {
     const fetchChores = async () => {
       try {
-        const res = await fetch(
-          `/api/chore/getWeekAssignments`
-        );
+        const res = await fetch(`/api/chore/getWeekAssignments`);
         const data = await res.json();
         setAssignments(data);
       } catch (err) {

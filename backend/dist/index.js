@@ -9,7 +9,7 @@ const user_1 = __importDefault(require("./routes/user"));
 const chore_1 = __importDefault(require("./routes/chore"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3001;
-app.use((0, cors_1.default)());
+app.use((0, cors_1.default)({ origin: 'http://localhost:3000' }));
 app.use(express_1.default.json());
 app.get('/api/hello', (_, res) => {
     res.json({ message: 'Hello from HomeIQ backend!' });

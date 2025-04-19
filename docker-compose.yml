@@ -3,14 +3,14 @@ services:
     build: ./frontend
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/app
     environment:
       - NEXT_PUBLIC_BACKEND_URL=http://backend:3001
-    working_dir: /app
-    command: npm run dev
     depends_on:
       - backend
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: npm run dev
   backend:
     build: ./backend
     ports:

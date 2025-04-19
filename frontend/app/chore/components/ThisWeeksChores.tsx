@@ -21,7 +21,7 @@ export default function ThisWeeksChores() {
     const fetchChores = async () => {
       try {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/chore/getWeekAssignments`
+          `/api/chore/getWeekAssignments`
         );
         const data = await res.json();
         setAssignments(data);

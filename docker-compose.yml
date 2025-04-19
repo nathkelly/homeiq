@@ -20,6 +20,7 @@ services:
       - db
     environment:
       - PORT=3001
+      - DATABASE_URL=postgresql://homeiq:homeiqpassword@db:5432/homeiq
     env_file:
       - ./backend/.env
     command: node dist/index.js

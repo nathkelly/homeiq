@@ -1,4 +1,5 @@
 // @ts-nocheck
+import 'dotenv/config';
 import { PrismaClient, UserRole } from '@prisma/client'
 
 const prisma = new PrismaClient()

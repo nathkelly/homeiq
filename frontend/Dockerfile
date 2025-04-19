@@ -7,7 +7,10 @@ WORKDIR /app
 
 # Copy and install dependencies
 COPY package*.json ./
-RUN npm install
+
+ENV npm_config_build_from_source=true
+
+RUN npm install --force
 
 # Copy the rest of the app
 COPY . .

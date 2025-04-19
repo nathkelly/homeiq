@@ -1,9 +1,19 @@
 model Chore {
-  id          Int      @id @default(autoincrement())
+  id          Int                @id @default(autoincrement())
   title       String
   description String?
-  isDone      Boolean  @default(false)
+  isDone      Boolean            @default(false)
   dueDate     DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  assignments ChoreAssignment[]
+}
+
+model ChoreAssignment {
+  id        Int      @id @default(autoincrement())
+  chore     Chore    @relation(fields: [choreId], references: [id])
+  choreId   Int
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  weekStart DateTime
 }

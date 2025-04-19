@@ -46,6 +46,7 @@ RUN npm ci --omit=dev
 # 2) Copy in your compiled app + generated client
 COPY --from=builder /app/dist         ./dist
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/prisma ./prisma
 
 # 3) Launch
 EXPOSE 3001

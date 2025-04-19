@@ -1,22 +1,22 @@
-import express, { Request, Response } from 'express';
-import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
-import choreRoutes from './routes/chore';
+import express from 'express'
+import cors from 'cors'
 
-const app = express();
-const port = process.env.PORT || 3001;
-const prisma = new PrismaClient();
+import userRoutes from './routes/user'
+import choreRoutes from './routes/chore'
 
-app.use(cors());
-app.use(express.json());
+const app = express()
+const port = process.env.PORT || 3001
 
-// Health check
-app.get('/api/hello', (_req: Request, res: Response) => {
-  res.json({ message: 'Hello from HomeIQ backend!' });
-});
+app.use(cors())
+app.use(express.json())
 
-app.use('/api/chore', choreRoutes);
+app.get('/api/hello', (_, res) => {
+  res.json({ message: 'Hello from HomeIQ backend!' })
+})
+
+app.use('/api/user', userRoutes)
+app.use('/api/chore', choreRoutes)
 
 app.listen(port, () => {
-  console.log(`HomeIQ backend listening at http://localhost:${port}`);
-});
+  console.log(`HomeIQ backend running on http://localhost:${port}`)
+})

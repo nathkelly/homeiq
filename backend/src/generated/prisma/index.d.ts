@@ -14,10 +14,39 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
- * Model JournalEntry
+ * Model Chore
  * 
  */
-export type JournalEntry = $Result.DefaultSelection<Prisma.$JournalEntryPayload>
+export type Chore = $Result.DefaultSelection<Prisma.$ChorePayload>
+/**
+ * Model ChoreAssignment
+ * 
+ */
+export type ChoreAssignment = $Result.DefaultSelection<Prisma.$ChoreAssignmentPayload>
+/**
+ * Model User
+ * 
+ */
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const UserRole: {
+  PARENT: 'PARENT',
+  CHILD: 'CHILD',
+  ADMIN: 'ADMIN',
+  GUEST: 'GUEST'
+};
+
+export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+}
+
+export type UserRole = $Enums.UserRole
+
+export const UserRole: typeof $Enums.UserRole
 
 /**
  * ##  Prisma Client ʲˢ
@@ -26,8 +55,8 @@ export type JournalEntry = $Result.DefaultSelection<Prisma.$JournalEntryPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more JournalEntries
- * const journalEntries = await prisma.journalEntry.findMany()
+ * // Fetch zero or more Chores
+ * const chores = await prisma.chore.findMany()
  * ```
  *
  *
@@ -47,8 +76,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more JournalEntries
-   * const journalEntries = await prisma.journalEntry.findMany()
+   * // Fetch zero or more Chores
+   * const chores = await prisma.chore.findMany()
    * ```
    *
    *
@@ -145,14 +174,34 @@ export class PrismaClient<
   }>>
 
       /**
-   * `prisma.journalEntry`: Exposes CRUD operations for the **JournalEntry** model.
+   * `prisma.chore`: Exposes CRUD operations for the **Chore** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more JournalEntries
-    * const journalEntries = await prisma.journalEntry.findMany()
+    * // Fetch zero or more Chores
+    * const chores = await prisma.chore.findMany()
     * ```
     */
-  get journalEntry(): Prisma.JournalEntryDelegate<ExtArgs, ClientOptions>;
+  get chore(): Prisma.ChoreDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.choreAssignment`: Exposes CRUD operations for the **ChoreAssignment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ChoreAssignments
+    * const choreAssignments = await prisma.choreAssignment.findMany()
+    * ```
+    */
+  get choreAssignment(): Prisma.ChoreAssignmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +642,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    JournalEntry: 'JournalEntry'
+    Chore: 'Chore',
+    ChoreAssignment: 'ChoreAssignment',
+    User: 'User'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,81 +663,229 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "journalEntry"
+      modelProps: "chore" | "choreAssignment" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
-      JournalEntry: {
-        payload: Prisma.$JournalEntryPayload<ExtArgs>
-        fields: Prisma.JournalEntryFieldRefs
+      Chore: {
+        payload: Prisma.$ChorePayload<ExtArgs>
+        fields: Prisma.ChoreFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.JournalEntryFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload> | null
+            args: Prisma.ChoreFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.JournalEntryFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+            args: Prisma.ChoreFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>
           }
           findFirst: {
-            args: Prisma.JournalEntryFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload> | null
+            args: Prisma.ChoreFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.JournalEntryFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+            args: Prisma.ChoreFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>
           }
           findMany: {
-            args: Prisma.JournalEntryFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>[]
+            args: Prisma.ChoreFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>[]
           }
           create: {
-            args: Prisma.JournalEntryCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+            args: Prisma.ChoreCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>
           }
           createMany: {
-            args: Prisma.JournalEntryCreateManyArgs<ExtArgs>
+            args: Prisma.ChoreCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.JournalEntryCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>[]
+            args: Prisma.ChoreCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>[]
           }
           delete: {
-            args: Prisma.JournalEntryDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+            args: Prisma.ChoreDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>
           }
           update: {
-            args: Prisma.JournalEntryUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+            args: Prisma.ChoreUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>
           }
           deleteMany: {
-            args: Prisma.JournalEntryDeleteManyArgs<ExtArgs>
+            args: Prisma.ChoreDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.JournalEntryUpdateManyArgs<ExtArgs>
+            args: Prisma.ChoreUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.JournalEntryUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>[]
+            args: Prisma.ChoreUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>[]
           }
           upsert: {
-            args: Prisma.JournalEntryUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$JournalEntryPayload>
+            args: Prisma.ChoreUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChorePayload>
           }
           aggregate: {
-            args: Prisma.JournalEntryAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateJournalEntry>
+            args: Prisma.ChoreAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChore>
           }
           groupBy: {
-            args: Prisma.JournalEntryGroupByArgs<ExtArgs>
-            result: $Utils.Optional<JournalEntryGroupByOutputType>[]
+            args: Prisma.ChoreGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChoreGroupByOutputType>[]
           }
           count: {
-            args: Prisma.JournalEntryCountArgs<ExtArgs>
-            result: $Utils.Optional<JournalEntryCountAggregateOutputType> | number
+            args: Prisma.ChoreCountArgs<ExtArgs>
+            result: $Utils.Optional<ChoreCountAggregateOutputType> | number
+          }
+        }
+      }
+      ChoreAssignment: {
+        payload: Prisma.$ChoreAssignmentPayload<ExtArgs>
+        fields: Prisma.ChoreAssignmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ChoreAssignmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ChoreAssignmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>
+          }
+          findFirst: {
+            args: Prisma.ChoreAssignmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ChoreAssignmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>
+          }
+          findMany: {
+            args: Prisma.ChoreAssignmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>[]
+          }
+          create: {
+            args: Prisma.ChoreAssignmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>
+          }
+          createMany: {
+            args: Prisma.ChoreAssignmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ChoreAssignmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>[]
+          }
+          delete: {
+            args: Prisma.ChoreAssignmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>
+          }
+          update: {
+            args: Prisma.ChoreAssignmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.ChoreAssignmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ChoreAssignmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ChoreAssignmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.ChoreAssignmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChoreAssignmentPayload>
+          }
+          aggregate: {
+            args: Prisma.ChoreAssignmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChoreAssignment>
+          }
+          groupBy: {
+            args: Prisma.ChoreAssignmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChoreAssignmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ChoreAssignmentCountArgs<ExtArgs>
+            result: $Utils.Optional<ChoreAssignmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findFirst: {
+            args: Prisma.UserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findMany: {
+            args: Prisma.UserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          create: {
+            args: Prisma.UserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          createMany: {
+            args: Prisma.UserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          delete: {
+            args: Prisma.UserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          update: {
+            args: Prisma.UserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser>
+          }
+          groupBy: {
+            args: Prisma.UserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
           }
         }
       }
@@ -774,7 +973,9 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
-    journalEntry?: JournalEntryOmit
+    chore?: ChoreOmit
+    choreAssignment?: ChoreAssignmentOmit
+    user?: UserOmit
   }
 
   /* Types for Logging */
@@ -864,364 +1065,471 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type ChoreCountOutputType
+   */
+
+  export type ChoreCountOutputType = {
+    assignments: number
+  }
+
+  export type ChoreCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignments?: boolean | ChoreCountOutputTypeCountAssignmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ChoreCountOutputType without action
+   */
+  export type ChoreCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreCountOutputType
+     */
+    select?: ChoreCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ChoreCountOutputType without action
+   */
+  export type ChoreCountOutputTypeCountAssignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChoreAssignmentWhereInput
+  }
+
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    chores: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chores?: boolean | UserCountOutputTypeCountChoresArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountChoresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChoreAssignmentWhereInput
+  }
+
 
   /**
    * Models
    */
 
   /**
-   * Model JournalEntry
+   * Model Chore
    */
 
-  export type AggregateJournalEntry = {
-    _count: JournalEntryCountAggregateOutputType | null
-    _avg: JournalEntryAvgAggregateOutputType | null
-    _sum: JournalEntrySumAggregateOutputType | null
-    _min: JournalEntryMinAggregateOutputType | null
-    _max: JournalEntryMaxAggregateOutputType | null
+  export type AggregateChore = {
+    _count: ChoreCountAggregateOutputType | null
+    _avg: ChoreAvgAggregateOutputType | null
+    _sum: ChoreSumAggregateOutputType | null
+    _min: ChoreMinAggregateOutputType | null
+    _max: ChoreMaxAggregateOutputType | null
   }
 
-  export type JournalEntryAvgAggregateOutputType = {
+  export type ChoreAvgAggregateOutputType = {
     id: number | null
   }
 
-  export type JournalEntrySumAggregateOutputType = {
+  export type ChoreSumAggregateOutputType = {
     id: number | null
   }
 
-  export type JournalEntryMinAggregateOutputType = {
-    id: number | null
-    title: string | null
-    content: string | null
-    createdAt: Date | null
-  }
-
-  export type JournalEntryMaxAggregateOutputType = {
+  export type ChoreMinAggregateOutputType = {
     id: number | null
     title: string | null
-    content: string | null
+    description: string | null
+    isDone: boolean | null
+    dueDate: Date | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
-  export type JournalEntryCountAggregateOutputType = {
+  export type ChoreMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    description: string | null
+    isDone: boolean | null
+    dueDate: Date | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ChoreCountAggregateOutputType = {
     id: number
     title: number
-    content: number
+    description: number
+    isDone: number
+    dueDate: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
-  export type JournalEntryAvgAggregateInputType = {
+  export type ChoreAvgAggregateInputType = {
     id?: true
   }
 
-  export type JournalEntrySumAggregateInputType = {
+  export type ChoreSumAggregateInputType = {
     id?: true
   }
 
-  export type JournalEntryMinAggregateInputType = {
+  export type ChoreMinAggregateInputType = {
     id?: true
     title?: true
-    content?: true
+    description?: true
+    isDone?: true
+    dueDate?: true
     createdAt?: true
+    updatedAt?: true
   }
 
-  export type JournalEntryMaxAggregateInputType = {
+  export type ChoreMaxAggregateInputType = {
     id?: true
     title?: true
-    content?: true
+    description?: true
+    isDone?: true
+    dueDate?: true
     createdAt?: true
+    updatedAt?: true
   }
 
-  export type JournalEntryCountAggregateInputType = {
+  export type ChoreCountAggregateInputType = {
     id?: true
     title?: true
-    content?: true
+    description?: true
+    isDone?: true
+    dueDate?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
-  export type JournalEntryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which JournalEntry to aggregate.
+     * Filter which Chore to aggregate.
      */
-    where?: JournalEntryWhereInput
+    where?: ChoreWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of JournalEntries to fetch.
+     * Determine the order of Chores to fetch.
      */
-    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    orderBy?: ChoreOrderByWithRelationInput | ChoreOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: JournalEntryWhereUniqueInput
+    cursor?: ChoreWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` JournalEntries from the position of the cursor.
+     * Take `±n` Chores from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` JournalEntries.
+     * Skip the first `n` Chores.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned JournalEntries
+     * Count returned Chores
     **/
-    _count?: true | JournalEntryCountAggregateInputType
+    _count?: true | ChoreCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: JournalEntryAvgAggregateInputType
+    _avg?: ChoreAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: JournalEntrySumAggregateInputType
+    _sum?: ChoreSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: JournalEntryMinAggregateInputType
+    _min?: ChoreMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: JournalEntryMaxAggregateInputType
+    _max?: ChoreMaxAggregateInputType
   }
 
-  export type GetJournalEntryAggregateType<T extends JournalEntryAggregateArgs> = {
-        [P in keyof T & keyof AggregateJournalEntry]: P extends '_count' | 'count'
+  export type GetChoreAggregateType<T extends ChoreAggregateArgs> = {
+        [P in keyof T & keyof AggregateChore]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateJournalEntry[P]>
-      : GetScalarType<T[P], AggregateJournalEntry[P]>
+        : GetScalarType<T[P], AggregateChore[P]>
+      : GetScalarType<T[P], AggregateChore[P]>
   }
 
 
 
 
-  export type JournalEntryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: JournalEntryWhereInput
-    orderBy?: JournalEntryOrderByWithAggregationInput | JournalEntryOrderByWithAggregationInput[]
-    by: JournalEntryScalarFieldEnum[] | JournalEntryScalarFieldEnum
-    having?: JournalEntryScalarWhereWithAggregatesInput
+  export type ChoreGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChoreWhereInput
+    orderBy?: ChoreOrderByWithAggregationInput | ChoreOrderByWithAggregationInput[]
+    by: ChoreScalarFieldEnum[] | ChoreScalarFieldEnum
+    having?: ChoreScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: JournalEntryCountAggregateInputType | true
-    _avg?: JournalEntryAvgAggregateInputType
-    _sum?: JournalEntrySumAggregateInputType
-    _min?: JournalEntryMinAggregateInputType
-    _max?: JournalEntryMaxAggregateInputType
+    _count?: ChoreCountAggregateInputType | true
+    _avg?: ChoreAvgAggregateInputType
+    _sum?: ChoreSumAggregateInputType
+    _min?: ChoreMinAggregateInputType
+    _max?: ChoreMaxAggregateInputType
   }
 
-  export type JournalEntryGroupByOutputType = {
+  export type ChoreGroupByOutputType = {
     id: number
     title: string
-    content: string
+    description: string | null
+    isDone: boolean
+    dueDate: Date | null
     createdAt: Date
-    _count: JournalEntryCountAggregateOutputType | null
-    _avg: JournalEntryAvgAggregateOutputType | null
-    _sum: JournalEntrySumAggregateOutputType | null
-    _min: JournalEntryMinAggregateOutputType | null
-    _max: JournalEntryMaxAggregateOutputType | null
+    updatedAt: Date
+    _count: ChoreCountAggregateOutputType | null
+    _avg: ChoreAvgAggregateOutputType | null
+    _sum: ChoreSumAggregateOutputType | null
+    _min: ChoreMinAggregateOutputType | null
+    _max: ChoreMaxAggregateOutputType | null
   }
 
-  type GetJournalEntryGroupByPayload<T extends JournalEntryGroupByArgs> = Prisma.PrismaPromise<
+  type GetChoreGroupByPayload<T extends ChoreGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<JournalEntryGroupByOutputType, T['by']> &
+      PickEnumerable<ChoreGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof JournalEntryGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof ChoreGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], JournalEntryGroupByOutputType[P]>
-            : GetScalarType<T[P], JournalEntryGroupByOutputType[P]>
+              : GetScalarType<T[P], ChoreGroupByOutputType[P]>
+            : GetScalarType<T[P], ChoreGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type JournalEntrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ChoreSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
+    isDone?: boolean
+    dueDate?: boolean
     createdAt?: boolean
-  }, ExtArgs["result"]["journalEntry"]>
+    updatedAt?: boolean
+    assignments?: boolean | Chore$assignmentsArgs<ExtArgs>
+    _count?: boolean | ChoreCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chore"]>
 
-  export type JournalEntrySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ChoreSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
+    isDone?: boolean
+    dueDate?: boolean
     createdAt?: boolean
-  }, ExtArgs["result"]["journalEntry"]>
+    updatedAt?: boolean
+  }, ExtArgs["result"]["chore"]>
 
-  export type JournalEntrySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type ChoreSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
+    isDone?: boolean
+    dueDate?: boolean
     createdAt?: boolean
-  }, ExtArgs["result"]["journalEntry"]>
+    updatedAt?: boolean
+  }, ExtArgs["result"]["chore"]>
 
-  export type JournalEntrySelectScalar = {
+  export type ChoreSelectScalar = {
     id?: boolean
     title?: boolean
-    content?: boolean
+    description?: boolean
+    isDone?: boolean
+    dueDate?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type JournalEntryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "content" | "createdAt", ExtArgs["result"]["journalEntry"]>
+  export type ChoreOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "isDone" | "dueDate" | "createdAt" | "updatedAt", ExtArgs["result"]["chore"]>
+  export type ChoreInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    assignments?: boolean | Chore$assignmentsArgs<ExtArgs>
+    _count?: boolean | ChoreCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ChoreIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ChoreIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $JournalEntryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "JournalEntry"
-    objects: {}
+  export type $ChorePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Chore"
+    objects: {
+      assignments: Prisma.$ChoreAssignmentPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       title: string
-      content: string
+      description: string | null
+      isDone: boolean
+      dueDate: Date | null
       createdAt: Date
-    }, ExtArgs["result"]["journalEntry"]>
+      updatedAt: Date
+    }, ExtArgs["result"]["chore"]>
     composites: {}
   }
 
-  type JournalEntryGetPayload<S extends boolean | null | undefined | JournalEntryDefaultArgs> = $Result.GetResult<Prisma.$JournalEntryPayload, S>
+  type ChoreGetPayload<S extends boolean | null | undefined | ChoreDefaultArgs> = $Result.GetResult<Prisma.$ChorePayload, S>
 
-  type JournalEntryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<JournalEntryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: JournalEntryCountAggregateInputType | true
+  type ChoreCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChoreFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChoreCountAggregateInputType | true
     }
 
-  export interface JournalEntryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JournalEntry'], meta: { name: 'JournalEntry' } }
+  export interface ChoreDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Chore'], meta: { name: 'Chore' } }
     /**
-     * Find zero or one JournalEntry that matches the filter.
-     * @param {JournalEntryFindUniqueArgs} args - Arguments to find a JournalEntry
+     * Find zero or one Chore that matches the filter.
+     * @param {ChoreFindUniqueArgs} args - Arguments to find a Chore
      * @example
-     * // Get one JournalEntry
-     * const journalEntry = await prisma.journalEntry.findUnique({
+     * // Get one Chore
+     * const chore = await prisma.chore.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends JournalEntryFindUniqueArgs>(args: SelectSubset<T, JournalEntryFindUniqueArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ChoreFindUniqueArgs>(args: SelectSubset<T, ChoreFindUniqueArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one JournalEntry that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Chore that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {JournalEntryFindUniqueOrThrowArgs} args - Arguments to find a JournalEntry
+     * @param {ChoreFindUniqueOrThrowArgs} args - Arguments to find a Chore
      * @example
-     * // Get one JournalEntry
-     * const journalEntry = await prisma.journalEntry.findUniqueOrThrow({
+     * // Get one Chore
+     * const chore = await prisma.chore.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends JournalEntryFindUniqueOrThrowArgs>(args: SelectSubset<T, JournalEntryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ChoreFindUniqueOrThrowArgs>(args: SelectSubset<T, ChoreFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first JournalEntry that matches the filter.
+     * Find the first Chore that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {JournalEntryFindFirstArgs} args - Arguments to find a JournalEntry
+     * @param {ChoreFindFirstArgs} args - Arguments to find a Chore
      * @example
-     * // Get one JournalEntry
-     * const journalEntry = await prisma.journalEntry.findFirst({
+     * // Get one Chore
+     * const chore = await prisma.chore.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends JournalEntryFindFirstArgs>(args?: SelectSubset<T, JournalEntryFindFirstArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ChoreFindFirstArgs>(args?: SelectSubset<T, ChoreFindFirstArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first JournalEntry that matches the filter or
+     * Find the first Chore that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {JournalEntryFindFirstOrThrowArgs} args - Arguments to find a JournalEntry
+     * @param {ChoreFindFirstOrThrowArgs} args - Arguments to find a Chore
      * @example
-     * // Get one JournalEntry
-     * const journalEntry = await prisma.journalEntry.findFirstOrThrow({
+     * // Get one Chore
+     * const chore = await prisma.chore.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends JournalEntryFindFirstOrThrowArgs>(args?: SelectSubset<T, JournalEntryFindFirstOrThrowArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ChoreFindFirstOrThrowArgs>(args?: SelectSubset<T, ChoreFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more JournalEntries that matches the filter.
+     * Find zero or more Chores that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {JournalEntryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {ChoreFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all JournalEntries
-     * const journalEntries = await prisma.journalEntry.findMany()
+     * // Get all Chores
+     * const chores = await prisma.chore.findMany()
      * 
-     * // Get first 10 JournalEntries
-     * const journalEntries = await prisma.journalEntry.findMany({ take: 10 })
+     * // Get first 10 Chores
+     * const chores = await prisma.chore.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const journalEntryWithIdOnly = await prisma.journalEntry.findMany({ select: { id: true } })
+     * const choreWithIdOnly = await prisma.chore.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends JournalEntryFindManyArgs>(args?: SelectSubset<T, JournalEntryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ChoreFindManyArgs>(args?: SelectSubset<T, ChoreFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a JournalEntry.
-     * @param {JournalEntryCreateArgs} args - Arguments to create a JournalEntry.
+     * Create a Chore.
+     * @param {ChoreCreateArgs} args - Arguments to create a Chore.
      * @example
-     * // Create one JournalEntry
-     * const JournalEntry = await prisma.journalEntry.create({
+     * // Create one Chore
+     * const Chore = await prisma.chore.create({
      *   data: {
-     *     // ... data to create a JournalEntry
+     *     // ... data to create a Chore
      *   }
      * })
      * 
      */
-    create<T extends JournalEntryCreateArgs>(args: SelectSubset<T, JournalEntryCreateArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ChoreCreateArgs>(args: SelectSubset<T, ChoreCreateArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many JournalEntries.
-     * @param {JournalEntryCreateManyArgs} args - Arguments to create many JournalEntries.
+     * Create many Chores.
+     * @param {ChoreCreateManyArgs} args - Arguments to create many Chores.
      * @example
-     * // Create many JournalEntries
-     * const journalEntry = await prisma.journalEntry.createMany({
+     * // Create many Chores
+     * const chore = await prisma.chore.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends JournalEntryCreateManyArgs>(args?: SelectSubset<T, JournalEntryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ChoreCreateManyArgs>(args?: SelectSubset<T, ChoreCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many JournalEntries and returns the data saved in the database.
-     * @param {JournalEntryCreateManyAndReturnArgs} args - Arguments to create many JournalEntries.
+     * Create many Chores and returns the data saved in the database.
+     * @param {ChoreCreateManyAndReturnArgs} args - Arguments to create many Chores.
      * @example
-     * // Create many JournalEntries
-     * const journalEntry = await prisma.journalEntry.createManyAndReturn({
+     * // Create many Chores
+     * const chore = await prisma.chore.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many JournalEntries and only return the `id`
-     * const journalEntryWithIdOnly = await prisma.journalEntry.createManyAndReturn({
+     * // Create many Chores and only return the `id`
+     * const choreWithIdOnly = await prisma.chore.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -1231,28 +1539,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends JournalEntryCreateManyAndReturnArgs>(args?: SelectSubset<T, JournalEntryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ChoreCreateManyAndReturnArgs>(args?: SelectSubset<T, ChoreCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a JournalEntry.
-     * @param {JournalEntryDeleteArgs} args - Arguments to delete one JournalEntry.
+     * Delete a Chore.
+     * @param {ChoreDeleteArgs} args - Arguments to delete one Chore.
      * @example
-     * // Delete one JournalEntry
-     * const JournalEntry = await prisma.journalEntry.delete({
+     * // Delete one Chore
+     * const Chore = await prisma.chore.delete({
      *   where: {
-     *     // ... filter to delete one JournalEntry
+     *     // ... filter to delete one Chore
      *   }
      * })
      * 
      */
-    delete<T extends JournalEntryDeleteArgs>(args: SelectSubset<T, JournalEntryDeleteArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ChoreDeleteArgs>(args: SelectSubset<T, ChoreDeleteArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one JournalEntry.
-     * @param {JournalEntryUpdateArgs} args - Arguments to update one JournalEntry.
+     * Update one Chore.
+     * @param {ChoreUpdateArgs} args - Arguments to update one Chore.
      * @example
-     * // Update one JournalEntry
-     * const journalEntry = await prisma.journalEntry.update({
+     * // Update one Chore
+     * const chore = await prisma.chore.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1262,30 +1570,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends JournalEntryUpdateArgs>(args: SelectSubset<T, JournalEntryUpdateArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ChoreUpdateArgs>(args: SelectSubset<T, ChoreUpdateArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more JournalEntries.
-     * @param {JournalEntryDeleteManyArgs} args - Arguments to filter JournalEntries to delete.
+     * Delete zero or more Chores.
+     * @param {ChoreDeleteManyArgs} args - Arguments to filter Chores to delete.
      * @example
-     * // Delete a few JournalEntries
-     * const { count } = await prisma.journalEntry.deleteMany({
+     * // Delete a few Chores
+     * const { count } = await prisma.chore.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends JournalEntryDeleteManyArgs>(args?: SelectSubset<T, JournalEntryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ChoreDeleteManyArgs>(args?: SelectSubset<T, ChoreDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more JournalEntries.
+     * Update zero or more Chores.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {JournalEntryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {ChoreUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many JournalEntries
-     * const journalEntry = await prisma.journalEntry.updateMany({
+     * // Update many Chores
+     * const chore = await prisma.chore.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1295,14 +1603,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends JournalEntryUpdateManyArgs>(args: SelectSubset<T, JournalEntryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ChoreUpdateManyArgs>(args: SelectSubset<T, ChoreUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more JournalEntries and returns the data updated in the database.
-     * @param {JournalEntryUpdateManyAndReturnArgs} args - Arguments to update many JournalEntries.
+     * Update zero or more Chores and returns the data updated in the database.
+     * @param {ChoreUpdateManyAndReturnArgs} args - Arguments to update many Chores.
      * @example
-     * // Update many JournalEntries
-     * const journalEntry = await prisma.journalEntry.updateManyAndReturn({
+     * // Update many Chores
+     * const chore = await prisma.chore.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1311,8 +1619,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more JournalEntries and only return the `id`
-     * const journalEntryWithIdOnly = await prisma.journalEntry.updateManyAndReturn({
+     * // Update zero or more Chores and only return the `id`
+     * const choreWithIdOnly = await prisma.chore.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -1325,56 +1633,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends JournalEntryUpdateManyAndReturnArgs>(args: SelectSubset<T, JournalEntryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ChoreUpdateManyAndReturnArgs>(args: SelectSubset<T, ChoreUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one JournalEntry.
-     * @param {JournalEntryUpsertArgs} args - Arguments to update or create a JournalEntry.
+     * Create or update one Chore.
+     * @param {ChoreUpsertArgs} args - Arguments to update or create a Chore.
      * @example
-     * // Update or create a JournalEntry
-     * const journalEntry = await prisma.journalEntry.upsert({
+     * // Update or create a Chore
+     * const chore = await prisma.chore.upsert({
      *   create: {
-     *     // ... data to create a JournalEntry
+     *     // ... data to create a Chore
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the JournalEntry we want to update
+     *     // ... the filter for the Chore we want to update
      *   }
      * })
      */
-    upsert<T extends JournalEntryUpsertArgs>(args: SelectSubset<T, JournalEntryUpsertArgs<ExtArgs>>): Prisma__JournalEntryClient<$Result.GetResult<Prisma.$JournalEntryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends ChoreUpsertArgs>(args: SelectSubset<T, ChoreUpsertArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of JournalEntries.
+     * Count the number of Chores.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {JournalEntryCountArgs} args - Arguments to filter JournalEntries to count.
+     * @param {ChoreCountArgs} args - Arguments to filter Chores to count.
      * @example
-     * // Count the number of JournalEntries
-     * const count = await prisma.journalEntry.count({
+     * // Count the number of Chores
+     * const count = await prisma.chore.count({
      *   where: {
-     *     // ... the filter for the JournalEntries we want to count
+     *     // ... the filter for the Chores we want to count
      *   }
      * })
     **/
-    count<T extends JournalEntryCountArgs>(
-      args?: Subset<T, JournalEntryCountArgs>,
+    count<T extends ChoreCountArgs>(
+      args?: Subset<T, ChoreCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], JournalEntryCountAggregateOutputType>
+          : GetScalarType<T['select'], ChoreCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a JournalEntry.
+     * Allows you to perform aggregations operations on a Chore.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {JournalEntryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {ChoreAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -1394,13 +1702,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends JournalEntryAggregateArgs>(args: Subset<T, JournalEntryAggregateArgs>): Prisma.PrismaPromise<GetJournalEntryAggregateType<T>>
+    aggregate<T extends ChoreAggregateArgs>(args: Subset<T, ChoreAggregateArgs>): Prisma.PrismaPromise<GetChoreAggregateType<T>>
 
     /**
-     * Group by JournalEntry.
+     * Group by Chore.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {JournalEntryGroupByArgs} args - Group by arguments.
+     * @param {ChoreGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -1415,14 +1723,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends JournalEntryGroupByArgs,
+      T extends ChoreGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: JournalEntryGroupByArgs['orderBy'] }
-        : { orderBy?: JournalEntryGroupByArgs['orderBy'] },
+        ? { orderBy: ChoreGroupByArgs['orderBy'] }
+        : { orderBy?: ChoreGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -1471,21 +1779,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, JournalEntryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJournalEntryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, ChoreGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChoreGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the JournalEntry model
+   * Fields of the Chore model
    */
-  readonly fields: JournalEntryFieldRefs;
+  readonly fields: ChoreFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for JournalEntry.
+   * The delegate class that acts as a "Promise-like" for Chore.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__JournalEntryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__ChoreClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    assignments<T extends Chore$assignmentsArgs<ExtArgs> = {}>(args?: Subset<T, Chore$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1512,376 +1821,2681 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the JournalEntry model
+   * Fields of the Chore model
    */
-  interface JournalEntryFieldRefs {
-    readonly id: FieldRef<"JournalEntry", 'Int'>
-    readonly title: FieldRef<"JournalEntry", 'String'>
-    readonly content: FieldRef<"JournalEntry", 'String'>
-    readonly createdAt: FieldRef<"JournalEntry", 'DateTime'>
+  interface ChoreFieldRefs {
+    readonly id: FieldRef<"Chore", 'Int'>
+    readonly title: FieldRef<"Chore", 'String'>
+    readonly description: FieldRef<"Chore", 'String'>
+    readonly isDone: FieldRef<"Chore", 'Boolean'>
+    readonly dueDate: FieldRef<"Chore", 'DateTime'>
+    readonly createdAt: FieldRef<"Chore", 'DateTime'>
+    readonly updatedAt: FieldRef<"Chore", 'DateTime'>
   }
     
 
   // Custom InputTypes
   /**
-   * JournalEntry findUnique
+   * Chore findUnique
    */
-  export type JournalEntryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * Filter, which JournalEntry to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: JournalEntryWhereUniqueInput
+    include?: ChoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Chore to fetch.
+     */
+    where: ChoreWhereUniqueInput
   }
 
   /**
-   * JournalEntry findUniqueOrThrow
+   * Chore findUniqueOrThrow
    */
-  export type JournalEntryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * Filter, which JournalEntry to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where: JournalEntryWhereUniqueInput
+    include?: ChoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Chore to fetch.
+     */
+    where: ChoreWhereUniqueInput
   }
 
   /**
-   * JournalEntry findFirst
+   * Chore findFirst
    */
-  export type JournalEntryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * Filter, which JournalEntry to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: JournalEntryWhereInput
+    include?: ChoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Chore to fetch.
+     */
+    where?: ChoreWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of JournalEntries to fetch.
+     * Determine the order of Chores to fetch.
      */
-    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    orderBy?: ChoreOrderByWithRelationInput | ChoreOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for JournalEntries.
+     * Sets the position for searching for Chores.
      */
-    cursor?: JournalEntryWhereUniqueInput
+    cursor?: ChoreWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` JournalEntries from the position of the cursor.
+     * Take `±n` Chores from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` JournalEntries.
+     * Skip the first `n` Chores.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of JournalEntries.
+     * Filter by unique combinations of Chores.
      */
-    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+    distinct?: ChoreScalarFieldEnum | ChoreScalarFieldEnum[]
   }
 
   /**
-   * JournalEntry findFirstOrThrow
+   * Chore findFirstOrThrow
    */
-  export type JournalEntryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * Filter, which JournalEntry to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: JournalEntryWhereInput
+    include?: ChoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Chore to fetch.
+     */
+    where?: ChoreWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of JournalEntries to fetch.
+     * Determine the order of Chores to fetch.
      */
-    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    orderBy?: ChoreOrderByWithRelationInput | ChoreOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for JournalEntries.
+     * Sets the position for searching for Chores.
      */
-    cursor?: JournalEntryWhereUniqueInput
+    cursor?: ChoreWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` JournalEntries from the position of the cursor.
+     * Take `±n` Chores from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` JournalEntries.
+     * Skip the first `n` Chores.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of JournalEntries.
+     * Filter by unique combinations of Chores.
      */
-    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+    distinct?: ChoreScalarFieldEnum | ChoreScalarFieldEnum[]
   }
 
   /**
-   * JournalEntry findMany
+   * Chore findMany
    */
-  export type JournalEntryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * Filter, which JournalEntries to fetch.
+     * Choose, which related nodes to fetch as well
      */
-    where?: JournalEntryWhereInput
+    include?: ChoreInclude<ExtArgs> | null
+    /**
+     * Filter, which Chores to fetch.
+     */
+    where?: ChoreWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of JournalEntries to fetch.
+     * Determine the order of Chores to fetch.
      */
-    orderBy?: JournalEntryOrderByWithRelationInput | JournalEntryOrderByWithRelationInput[]
+    orderBy?: ChoreOrderByWithRelationInput | ChoreOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing JournalEntries.
+     * Sets the position for listing Chores.
      */
-    cursor?: JournalEntryWhereUniqueInput
+    cursor?: ChoreWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` JournalEntries from the position of the cursor.
+     * Take `±n` Chores from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` JournalEntries.
+     * Skip the first `n` Chores.
      */
     skip?: number
-    distinct?: JournalEntryScalarFieldEnum | JournalEntryScalarFieldEnum[]
+    distinct?: ChoreScalarFieldEnum | ChoreScalarFieldEnum[]
   }
 
   /**
-   * JournalEntry create
+   * Chore create
    */
-  export type JournalEntryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * The data needed to create a JournalEntry.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<JournalEntryCreateInput, JournalEntryUncheckedCreateInput>
+    include?: ChoreInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Chore.
+     */
+    data: XOR<ChoreCreateInput, ChoreUncheckedCreateInput>
   }
 
   /**
-   * JournalEntry createMany
+   * Chore createMany
    */
-  export type JournalEntryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many JournalEntries.
+     * The data used to create many Chores.
      */
-    data: JournalEntryCreateManyInput | JournalEntryCreateManyInput[]
+    data: ChoreCreateManyInput | ChoreCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * JournalEntry createManyAndReturn
+   * Chore createManyAndReturn
    */
-  export type JournalEntryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelectCreateManyAndReturn<ExtArgs> | null
+    select?: ChoreSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * The data used to create many JournalEntries.
+     * The data used to create many Chores.
      */
-    data: JournalEntryCreateManyInput | JournalEntryCreateManyInput[]
+    data: ChoreCreateManyInput | ChoreCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * JournalEntry update
+   * Chore update
    */
-  export type JournalEntryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * The data needed to update a JournalEntry.
+     * Choose, which related nodes to fetch as well
      */
-    data: XOR<JournalEntryUpdateInput, JournalEntryUncheckedUpdateInput>
+    include?: ChoreInclude<ExtArgs> | null
     /**
-     * Choose, which JournalEntry to update.
+     * The data needed to update a Chore.
      */
-    where: JournalEntryWhereUniqueInput
+    data: XOR<ChoreUpdateInput, ChoreUncheckedUpdateInput>
+    /**
+     * Choose, which Chore to update.
+     */
+    where: ChoreWhereUniqueInput
   }
 
   /**
-   * JournalEntry updateMany
+   * Chore updateMany
    */
-  export type JournalEntryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update JournalEntries.
+     * The data used to update Chores.
      */
-    data: XOR<JournalEntryUpdateManyMutationInput, JournalEntryUncheckedUpdateManyInput>
+    data: XOR<ChoreUpdateManyMutationInput, ChoreUncheckedUpdateManyInput>
     /**
-     * Filter which JournalEntries to update
+     * Filter which Chores to update
      */
-    where?: JournalEntryWhereInput
+    where?: ChoreWhereInput
     /**
-     * Limit how many JournalEntries to update.
+     * Limit how many Chores to update.
      */
     limit?: number
   }
 
   /**
-   * JournalEntry updateManyAndReturn
+   * Chore updateManyAndReturn
    */
-  export type JournalEntryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ChoreSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * The data used to update JournalEntries.
+     * The data used to update Chores.
      */
-    data: XOR<JournalEntryUpdateManyMutationInput, JournalEntryUncheckedUpdateManyInput>
+    data: XOR<ChoreUpdateManyMutationInput, ChoreUncheckedUpdateManyInput>
     /**
-     * Filter which JournalEntries to update
+     * Filter which Chores to update
      */
-    where?: JournalEntryWhereInput
+    where?: ChoreWhereInput
     /**
-     * Limit how many JournalEntries to update.
+     * Limit how many Chores to update.
      */
     limit?: number
   }
 
   /**
-   * JournalEntry upsert
+   * Chore upsert
    */
-  export type JournalEntryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * The filter to search for the JournalEntry to update in case it exists.
+     * Choose, which related nodes to fetch as well
      */
-    where: JournalEntryWhereUniqueInput
+    include?: ChoreInclude<ExtArgs> | null
     /**
-     * In case the JournalEntry found by the `where` argument doesn't exist, create a new JournalEntry with this data.
+     * The filter to search for the Chore to update in case it exists.
      */
-    create: XOR<JournalEntryCreateInput, JournalEntryUncheckedCreateInput>
+    where: ChoreWhereUniqueInput
     /**
-     * In case the JournalEntry was found with the provided `where` argument, update it with this data.
+     * In case the Chore found by the `where` argument doesn't exist, create a new Chore with this data.
      */
-    update: XOR<JournalEntryUpdateInput, JournalEntryUncheckedUpdateInput>
+    create: XOR<ChoreCreateInput, ChoreUncheckedCreateInput>
+    /**
+     * In case the Chore was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChoreUpdateInput, ChoreUncheckedUpdateInput>
   }
 
   /**
-   * JournalEntry delete
+   * Chore delete
    */
-  export type JournalEntryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the Chore
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the Chore
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreOmit<ExtArgs> | null
     /**
-     * Filter which JournalEntry to delete.
+     * Choose, which related nodes to fetch as well
      */
-    where: JournalEntryWhereUniqueInput
+    include?: ChoreInclude<ExtArgs> | null
+    /**
+     * Filter which Chore to delete.
+     */
+    where: ChoreWhereUniqueInput
   }
 
   /**
-   * JournalEntry deleteMany
+   * Chore deleteMany
    */
-  export type JournalEntryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ChoreDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which JournalEntries to delete
+     * Filter which Chores to delete
      */
-    where?: JournalEntryWhereInput
+    where?: ChoreWhereInput
     /**
-     * Limit how many JournalEntries to delete.
+     * Limit how many Chores to delete.
      */
     limit?: number
   }
 
   /**
-   * JournalEntry without action
+   * Chore.assignments
    */
-  export type JournalEntryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Chore$assignmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the JournalEntry
+     * Select specific fields to fetch from the ChoreAssignment
      */
-    select?: JournalEntrySelect<ExtArgs> | null
+    select?: ChoreAssignmentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the JournalEntry
+     * Omit specific fields from the ChoreAssignment
      */
-    omit?: JournalEntryOmit<ExtArgs> | null
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    where?: ChoreAssignmentWhereInput
+    orderBy?: ChoreAssignmentOrderByWithRelationInput | ChoreAssignmentOrderByWithRelationInput[]
+    cursor?: ChoreAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChoreAssignmentScalarFieldEnum | ChoreAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * Chore without action
+   */
+  export type ChoreDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chore
+     */
+    select?: ChoreSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chore
+     */
+    omit?: ChoreOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ChoreAssignment
+   */
+
+  export type AggregateChoreAssignment = {
+    _count: ChoreAssignmentCountAggregateOutputType | null
+    _avg: ChoreAssignmentAvgAggregateOutputType | null
+    _sum: ChoreAssignmentSumAggregateOutputType | null
+    _min: ChoreAssignmentMinAggregateOutputType | null
+    _max: ChoreAssignmentMaxAggregateOutputType | null
+  }
+
+  export type ChoreAssignmentAvgAggregateOutputType = {
+    id: number | null
+    choreId: number | null
+    userId: number | null
+  }
+
+  export type ChoreAssignmentSumAggregateOutputType = {
+    id: number | null
+    choreId: number | null
+    userId: number | null
+  }
+
+  export type ChoreAssignmentMinAggregateOutputType = {
+    id: number | null
+    choreId: number | null
+    userId: number | null
+    weekStart: Date | null
+  }
+
+  export type ChoreAssignmentMaxAggregateOutputType = {
+    id: number | null
+    choreId: number | null
+    userId: number | null
+    weekStart: Date | null
+  }
+
+  export type ChoreAssignmentCountAggregateOutputType = {
+    id: number
+    choreId: number
+    userId: number
+    weekStart: number
+    _all: number
+  }
+
+
+  export type ChoreAssignmentAvgAggregateInputType = {
+    id?: true
+    choreId?: true
+    userId?: true
+  }
+
+  export type ChoreAssignmentSumAggregateInputType = {
+    id?: true
+    choreId?: true
+    userId?: true
+  }
+
+  export type ChoreAssignmentMinAggregateInputType = {
+    id?: true
+    choreId?: true
+    userId?: true
+    weekStart?: true
+  }
+
+  export type ChoreAssignmentMaxAggregateInputType = {
+    id?: true
+    choreId?: true
+    userId?: true
+    weekStart?: true
+  }
+
+  export type ChoreAssignmentCountAggregateInputType = {
+    id?: true
+    choreId?: true
+    userId?: true
+    weekStart?: true
+    _all?: true
+  }
+
+  export type ChoreAssignmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChoreAssignment to aggregate.
+     */
+    where?: ChoreAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChoreAssignments to fetch.
+     */
+    orderBy?: ChoreAssignmentOrderByWithRelationInput | ChoreAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ChoreAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChoreAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChoreAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ChoreAssignments
+    **/
+    _count?: true | ChoreAssignmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ChoreAssignmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ChoreAssignmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ChoreAssignmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ChoreAssignmentMaxAggregateInputType
+  }
+
+  export type GetChoreAssignmentAggregateType<T extends ChoreAssignmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateChoreAssignment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChoreAssignment[P]>
+      : GetScalarType<T[P], AggregateChoreAssignment[P]>
+  }
+
+
+
+
+  export type ChoreAssignmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChoreAssignmentWhereInput
+    orderBy?: ChoreAssignmentOrderByWithAggregationInput | ChoreAssignmentOrderByWithAggregationInput[]
+    by: ChoreAssignmentScalarFieldEnum[] | ChoreAssignmentScalarFieldEnum
+    having?: ChoreAssignmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ChoreAssignmentCountAggregateInputType | true
+    _avg?: ChoreAssignmentAvgAggregateInputType
+    _sum?: ChoreAssignmentSumAggregateInputType
+    _min?: ChoreAssignmentMinAggregateInputType
+    _max?: ChoreAssignmentMaxAggregateInputType
+  }
+
+  export type ChoreAssignmentGroupByOutputType = {
+    id: number
+    choreId: number
+    userId: number
+    weekStart: Date
+    _count: ChoreAssignmentCountAggregateOutputType | null
+    _avg: ChoreAssignmentAvgAggregateOutputType | null
+    _sum: ChoreAssignmentSumAggregateOutputType | null
+    _min: ChoreAssignmentMinAggregateOutputType | null
+    _max: ChoreAssignmentMaxAggregateOutputType | null
+  }
+
+  type GetChoreAssignmentGroupByPayload<T extends ChoreAssignmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ChoreAssignmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ChoreAssignmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ChoreAssignmentGroupByOutputType[P]>
+            : GetScalarType<T[P], ChoreAssignmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ChoreAssignmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    choreId?: boolean
+    userId?: boolean
+    weekStart?: boolean
+    chore?: boolean | ChoreDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["choreAssignment"]>
+
+  export type ChoreAssignmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    choreId?: boolean
+    userId?: boolean
+    weekStart?: boolean
+    chore?: boolean | ChoreDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["choreAssignment"]>
+
+  export type ChoreAssignmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    choreId?: boolean
+    userId?: boolean
+    weekStart?: boolean
+    chore?: boolean | ChoreDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["choreAssignment"]>
+
+  export type ChoreAssignmentSelectScalar = {
+    id?: boolean
+    choreId?: boolean
+    userId?: boolean
+    weekStart?: boolean
+  }
+
+  export type ChoreAssignmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "choreId" | "userId" | "weekStart", ExtArgs["result"]["choreAssignment"]>
+  export type ChoreAssignmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chore?: boolean | ChoreDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ChoreAssignmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chore?: boolean | ChoreDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ChoreAssignmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chore?: boolean | ChoreDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ChoreAssignmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ChoreAssignment"
+    objects: {
+      chore: Prisma.$ChorePayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      choreId: number
+      userId: number
+      weekStart: Date
+    }, ExtArgs["result"]["choreAssignment"]>
+    composites: {}
+  }
+
+  type ChoreAssignmentGetPayload<S extends boolean | null | undefined | ChoreAssignmentDefaultArgs> = $Result.GetResult<Prisma.$ChoreAssignmentPayload, S>
+
+  type ChoreAssignmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChoreAssignmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChoreAssignmentCountAggregateInputType | true
+    }
+
+  export interface ChoreAssignmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ChoreAssignment'], meta: { name: 'ChoreAssignment' } }
+    /**
+     * Find zero or one ChoreAssignment that matches the filter.
+     * @param {ChoreAssignmentFindUniqueArgs} args - Arguments to find a ChoreAssignment
+     * @example
+     * // Get one ChoreAssignment
+     * const choreAssignment = await prisma.choreAssignment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ChoreAssignmentFindUniqueArgs>(args: SelectSubset<T, ChoreAssignmentFindUniqueArgs<ExtArgs>>): Prisma__ChoreAssignmentClient<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ChoreAssignment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ChoreAssignmentFindUniqueOrThrowArgs} args - Arguments to find a ChoreAssignment
+     * @example
+     * // Get one ChoreAssignment
+     * const choreAssignment = await prisma.choreAssignment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ChoreAssignmentFindUniqueOrThrowArgs>(args: SelectSubset<T, ChoreAssignmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChoreAssignmentClient<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ChoreAssignment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChoreAssignmentFindFirstArgs} args - Arguments to find a ChoreAssignment
+     * @example
+     * // Get one ChoreAssignment
+     * const choreAssignment = await prisma.choreAssignment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ChoreAssignmentFindFirstArgs>(args?: SelectSubset<T, ChoreAssignmentFindFirstArgs<ExtArgs>>): Prisma__ChoreAssignmentClient<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ChoreAssignment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChoreAssignmentFindFirstOrThrowArgs} args - Arguments to find a ChoreAssignment
+     * @example
+     * // Get one ChoreAssignment
+     * const choreAssignment = await prisma.choreAssignment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ChoreAssignmentFindFirstOrThrowArgs>(args?: SelectSubset<T, ChoreAssignmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChoreAssignmentClient<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ChoreAssignments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChoreAssignmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ChoreAssignments
+     * const choreAssignments = await prisma.choreAssignment.findMany()
+     * 
+     * // Get first 10 ChoreAssignments
+     * const choreAssignments = await prisma.choreAssignment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const choreAssignmentWithIdOnly = await prisma.choreAssignment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ChoreAssignmentFindManyArgs>(args?: SelectSubset<T, ChoreAssignmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ChoreAssignment.
+     * @param {ChoreAssignmentCreateArgs} args - Arguments to create a ChoreAssignment.
+     * @example
+     * // Create one ChoreAssignment
+     * const ChoreAssignment = await prisma.choreAssignment.create({
+     *   data: {
+     *     // ... data to create a ChoreAssignment
+     *   }
+     * })
+     * 
+     */
+    create<T extends ChoreAssignmentCreateArgs>(args: SelectSubset<T, ChoreAssignmentCreateArgs<ExtArgs>>): Prisma__ChoreAssignmentClient<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ChoreAssignments.
+     * @param {ChoreAssignmentCreateManyArgs} args - Arguments to create many ChoreAssignments.
+     * @example
+     * // Create many ChoreAssignments
+     * const choreAssignment = await prisma.choreAssignment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ChoreAssignmentCreateManyArgs>(args?: SelectSubset<T, ChoreAssignmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ChoreAssignments and returns the data saved in the database.
+     * @param {ChoreAssignmentCreateManyAndReturnArgs} args - Arguments to create many ChoreAssignments.
+     * @example
+     * // Create many ChoreAssignments
+     * const choreAssignment = await prisma.choreAssignment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ChoreAssignments and only return the `id`
+     * const choreAssignmentWithIdOnly = await prisma.choreAssignment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ChoreAssignmentCreateManyAndReturnArgs>(args?: SelectSubset<T, ChoreAssignmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ChoreAssignment.
+     * @param {ChoreAssignmentDeleteArgs} args - Arguments to delete one ChoreAssignment.
+     * @example
+     * // Delete one ChoreAssignment
+     * const ChoreAssignment = await prisma.choreAssignment.delete({
+     *   where: {
+     *     // ... filter to delete one ChoreAssignment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ChoreAssignmentDeleteArgs>(args: SelectSubset<T, ChoreAssignmentDeleteArgs<ExtArgs>>): Prisma__ChoreAssignmentClient<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ChoreAssignment.
+     * @param {ChoreAssignmentUpdateArgs} args - Arguments to update one ChoreAssignment.
+     * @example
+     * // Update one ChoreAssignment
+     * const choreAssignment = await prisma.choreAssignment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ChoreAssignmentUpdateArgs>(args: SelectSubset<T, ChoreAssignmentUpdateArgs<ExtArgs>>): Prisma__ChoreAssignmentClient<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ChoreAssignments.
+     * @param {ChoreAssignmentDeleteManyArgs} args - Arguments to filter ChoreAssignments to delete.
+     * @example
+     * // Delete a few ChoreAssignments
+     * const { count } = await prisma.choreAssignment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ChoreAssignmentDeleteManyArgs>(args?: SelectSubset<T, ChoreAssignmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChoreAssignments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChoreAssignmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ChoreAssignments
+     * const choreAssignment = await prisma.choreAssignment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ChoreAssignmentUpdateManyArgs>(args: SelectSubset<T, ChoreAssignmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChoreAssignments and returns the data updated in the database.
+     * @param {ChoreAssignmentUpdateManyAndReturnArgs} args - Arguments to update many ChoreAssignments.
+     * @example
+     * // Update many ChoreAssignments
+     * const choreAssignment = await prisma.choreAssignment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ChoreAssignments and only return the `id`
+     * const choreAssignmentWithIdOnly = await prisma.choreAssignment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ChoreAssignmentUpdateManyAndReturnArgs>(args: SelectSubset<T, ChoreAssignmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ChoreAssignment.
+     * @param {ChoreAssignmentUpsertArgs} args - Arguments to update or create a ChoreAssignment.
+     * @example
+     * // Update or create a ChoreAssignment
+     * const choreAssignment = await prisma.choreAssignment.upsert({
+     *   create: {
+     *     // ... data to create a ChoreAssignment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ChoreAssignment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ChoreAssignmentUpsertArgs>(args: SelectSubset<T, ChoreAssignmentUpsertArgs<ExtArgs>>): Prisma__ChoreAssignmentClient<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ChoreAssignments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChoreAssignmentCountArgs} args - Arguments to filter ChoreAssignments to count.
+     * @example
+     * // Count the number of ChoreAssignments
+     * const count = await prisma.choreAssignment.count({
+     *   where: {
+     *     // ... the filter for the ChoreAssignments we want to count
+     *   }
+     * })
+    **/
+    count<T extends ChoreAssignmentCountArgs>(
+      args?: Subset<T, ChoreAssignmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ChoreAssignmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ChoreAssignment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChoreAssignmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ChoreAssignmentAggregateArgs>(args: Subset<T, ChoreAssignmentAggregateArgs>): Prisma.PrismaPromise<GetChoreAssignmentAggregateType<T>>
+
+    /**
+     * Group by ChoreAssignment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChoreAssignmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ChoreAssignmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ChoreAssignmentGroupByArgs['orderBy'] }
+        : { orderBy?: ChoreAssignmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ChoreAssignmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChoreAssignmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ChoreAssignment model
+   */
+  readonly fields: ChoreAssignmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ChoreAssignment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ChoreAssignmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    chore<T extends ChoreDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChoreDefaultArgs<ExtArgs>>): Prisma__ChoreClient<$Result.GetResult<Prisma.$ChorePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ChoreAssignment model
+   */
+  interface ChoreAssignmentFieldRefs {
+    readonly id: FieldRef<"ChoreAssignment", 'Int'>
+    readonly choreId: FieldRef<"ChoreAssignment", 'Int'>
+    readonly userId: FieldRef<"ChoreAssignment", 'Int'>
+    readonly weekStart: FieldRef<"ChoreAssignment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ChoreAssignment findUnique
+   */
+  export type ChoreAssignmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ChoreAssignment to fetch.
+     */
+    where: ChoreAssignmentWhereUniqueInput
+  }
+
+  /**
+   * ChoreAssignment findUniqueOrThrow
+   */
+  export type ChoreAssignmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ChoreAssignment to fetch.
+     */
+    where: ChoreAssignmentWhereUniqueInput
+  }
+
+  /**
+   * ChoreAssignment findFirst
+   */
+  export type ChoreAssignmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ChoreAssignment to fetch.
+     */
+    where?: ChoreAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChoreAssignments to fetch.
+     */
+    orderBy?: ChoreAssignmentOrderByWithRelationInput | ChoreAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChoreAssignments.
+     */
+    cursor?: ChoreAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChoreAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChoreAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChoreAssignments.
+     */
+    distinct?: ChoreAssignmentScalarFieldEnum | ChoreAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * ChoreAssignment findFirstOrThrow
+   */
+  export type ChoreAssignmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ChoreAssignment to fetch.
+     */
+    where?: ChoreAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChoreAssignments to fetch.
+     */
+    orderBy?: ChoreAssignmentOrderByWithRelationInput | ChoreAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChoreAssignments.
+     */
+    cursor?: ChoreAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChoreAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChoreAssignments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChoreAssignments.
+     */
+    distinct?: ChoreAssignmentScalarFieldEnum | ChoreAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * ChoreAssignment findMany
+   */
+  export type ChoreAssignmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ChoreAssignments to fetch.
+     */
+    where?: ChoreAssignmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChoreAssignments to fetch.
+     */
+    orderBy?: ChoreAssignmentOrderByWithRelationInput | ChoreAssignmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ChoreAssignments.
+     */
+    cursor?: ChoreAssignmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChoreAssignments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChoreAssignments.
+     */
+    skip?: number
+    distinct?: ChoreAssignmentScalarFieldEnum | ChoreAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * ChoreAssignment create
+   */
+  export type ChoreAssignmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ChoreAssignment.
+     */
+    data: XOR<ChoreAssignmentCreateInput, ChoreAssignmentUncheckedCreateInput>
+  }
+
+  /**
+   * ChoreAssignment createMany
+   */
+  export type ChoreAssignmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ChoreAssignments.
+     */
+    data: ChoreAssignmentCreateManyInput | ChoreAssignmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ChoreAssignment createManyAndReturn
+   */
+  export type ChoreAssignmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many ChoreAssignments.
+     */
+    data: ChoreAssignmentCreateManyInput | ChoreAssignmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ChoreAssignment update
+   */
+  export type ChoreAssignmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ChoreAssignment.
+     */
+    data: XOR<ChoreAssignmentUpdateInput, ChoreAssignmentUncheckedUpdateInput>
+    /**
+     * Choose, which ChoreAssignment to update.
+     */
+    where: ChoreAssignmentWhereUniqueInput
+  }
+
+  /**
+   * ChoreAssignment updateMany
+   */
+  export type ChoreAssignmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ChoreAssignments.
+     */
+    data: XOR<ChoreAssignmentUpdateManyMutationInput, ChoreAssignmentUncheckedUpdateManyInput>
+    /**
+     * Filter which ChoreAssignments to update
+     */
+    where?: ChoreAssignmentWhereInput
+    /**
+     * Limit how many ChoreAssignments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ChoreAssignment updateManyAndReturn
+   */
+  export type ChoreAssignmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * The data used to update ChoreAssignments.
+     */
+    data: XOR<ChoreAssignmentUpdateManyMutationInput, ChoreAssignmentUncheckedUpdateManyInput>
+    /**
+     * Filter which ChoreAssignments to update
+     */
+    where?: ChoreAssignmentWhereInput
+    /**
+     * Limit how many ChoreAssignments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ChoreAssignment upsert
+   */
+  export type ChoreAssignmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ChoreAssignment to update in case it exists.
+     */
+    where: ChoreAssignmentWhereUniqueInput
+    /**
+     * In case the ChoreAssignment found by the `where` argument doesn't exist, create a new ChoreAssignment with this data.
+     */
+    create: XOR<ChoreAssignmentCreateInput, ChoreAssignmentUncheckedCreateInput>
+    /**
+     * In case the ChoreAssignment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChoreAssignmentUpdateInput, ChoreAssignmentUncheckedUpdateInput>
+  }
+
+  /**
+   * ChoreAssignment delete
+   */
+  export type ChoreAssignmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    /**
+     * Filter which ChoreAssignment to delete.
+     */
+    where: ChoreAssignmentWhereUniqueInput
+  }
+
+  /**
+   * ChoreAssignment deleteMany
+   */
+  export type ChoreAssignmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChoreAssignments to delete
+     */
+    where?: ChoreAssignmentWhereInput
+    /**
+     * Limit how many ChoreAssignments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ChoreAssignment without action
+   */
+  export type ChoreAssignmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model User
+   */
+
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type UserSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type UserMinAggregateOutputType = {
+    id: number | null
+    email: string | null
+    password: string | null
+    firstName: string | null
+    lastName: string | null
+    role: $Enums.UserRole | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserMaxAggregateOutputType = {
+    id: number | null
+    email: string | null
+    password: string | null
+    firstName: string | null
+    lastName: string | null
+    role: $Enums.UserRole | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserCountAggregateOutputType = {
+    id: number
+    email: number
+    password: number
+    firstName: number
+    lastName: number
+    role: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type UserSumAggregateInputType = {
+    id?: true
+  }
+
+  export type UserMinAggregateInputType = {
+    id?: true
+    email?: true
+    password?: true
+    firstName?: true
+    lastName?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserMaxAggregateInputType = {
+    id?: true
+    email?: true
+    password?: true
+    firstName?: true
+    lastName?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserCountAggregateInputType = {
+    id?: true
+    email?: true
+    password?: true
+    firstName?: true
+    lastName?: true
+    role?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which User to aggregate.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Users
+    **/
+    _count?: true | UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
+  }
+
+
+
+
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type UserGroupByOutputType = {
+    id: number
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    role: $Enums.UserRole
+    createdAt: Date
+    updatedAt: Date
+    _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    password?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    chores?: boolean | User$choresArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    password?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    email?: boolean
+    password?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["user"]>
+
+  export type UserSelectScalar = {
+    id?: boolean
+    email?: boolean
+    password?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    role?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "role" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chores?: boolean | User$choresArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {
+      chores: Prisma.$ChoreAssignmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      email: string
+      password: string
+      firstName: string
+      lastName: string
+      role: $Enums.UserRole
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["user"]>
+    composites: {}
+  }
+
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserCountAggregateInputType | true
+    }
+
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+    /**
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one User that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.user.findMany()
+     * 
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
+     * @example
+     * // Create one User
+     * const User = await prisma.user.create({
+     *   data: {
+     *     // ... data to create a User
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Users.
+     * @param {UserCreateManyArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Users and returns the data saved in the database.
+     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
+     * @example
+     * // Delete one User
+     * const User = await prisma.user.delete({
+     *   where: {
+     *     // ... filter to delete one User
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
+     * @example
+     * // Update one User
+     * const user = await prisma.user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users and returns the data updated in the database.
+     * @param {UserUpdateManyAndReturnArgs} args - Arguments to update many Users.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Users and only return the `id`
+     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
+     * @example
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
+     *   create: {
+     *     // ... data to create a User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.user.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+
+    /**
+     * Group by User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for User.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    chores<T extends User$choresArgs<ExtArgs> = {}>(args?: Subset<T, User$choresArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChoreAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the User model
+   */
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'Int'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
+    readonly firstName: FieldRef<"User", 'String'>
+    readonly lastName: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'UserRole'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * User findUnique
+   */
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findUniqueOrThrow
+   */
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findFirst
+   */
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findFirstOrThrow
+   */
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findMany
+   */
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which Users to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User create
+   */
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to create a User.
+     */
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+  }
+
+  /**
+   * User createMany
+   */
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * User createManyAndReturn
+   */
+  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * User update
+   */
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to update a User.
+     */
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    /**
+     * Choose, which User to update.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User updateMany
+   */
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * User updateManyAndReturn
+   */
+  export type UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * User upsert
+   */
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The filter to search for the User to update in case it exists.
+     */
+    where: UserWhereUniqueInput
+    /**
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
+     */
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    /**
+     * In case the User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+  }
+
+  /**
+   * User delete
+   */
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter which User to delete.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User deleteMany
+   */
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Users to delete
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * User.chores
+   */
+  export type User$choresArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChoreAssignment
+     */
+    select?: ChoreAssignmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChoreAssignment
+     */
+    omit?: ChoreAssignmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChoreAssignmentInclude<ExtArgs> | null
+    where?: ChoreAssignmentWhereInput
+    orderBy?: ChoreAssignmentOrderByWithRelationInput | ChoreAssignmentOrderByWithRelationInput[]
+    cursor?: ChoreAssignmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChoreAssignmentScalarFieldEnum | ChoreAssignmentScalarFieldEnum[]
+  }
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -1899,14 +4513,41 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-  export const JournalEntryScalarFieldEnum: {
+  export const ChoreScalarFieldEnum: {
     id: 'id',
     title: 'title',
-    content: 'content',
-    createdAt: 'createdAt'
+    description: 'description',
+    isDone: 'isDone',
+    dueDate: 'dueDate',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
-  export type JournalEntryScalarFieldEnum = (typeof JournalEntryScalarFieldEnum)[keyof typeof JournalEntryScalarFieldEnum]
+  export type ChoreScalarFieldEnum = (typeof ChoreScalarFieldEnum)[keyof typeof ChoreScalarFieldEnum]
+
+
+  export const ChoreAssignmentScalarFieldEnum: {
+    id: 'id',
+    choreId: 'choreId',
+    userId: 'userId',
+    weekStart: 'weekStart'
+  };
+
+  export type ChoreAssignmentScalarFieldEnum = (typeof ChoreAssignmentScalarFieldEnum)[keyof typeof ChoreAssignmentScalarFieldEnum]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    email: 'email',
+    password: 'password',
+    firstName: 'firstName',
+    lastName: 'lastName',
+    role: 'role',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -1923,6 +4564,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -1959,6 +4608,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -1969,6 +4625,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserRole'
+   */
+  export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserRole[]'
+   */
+  export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
     
 
 
@@ -1989,99 +4659,391 @@ export namespace Prisma {
    */
 
 
-  export type JournalEntryWhereInput = {
-    AND?: JournalEntryWhereInput | JournalEntryWhereInput[]
-    OR?: JournalEntryWhereInput[]
-    NOT?: JournalEntryWhereInput | JournalEntryWhereInput[]
-    id?: IntFilter<"JournalEntry"> | number
-    title?: StringFilter<"JournalEntry"> | string
-    content?: StringFilter<"JournalEntry"> | string
-    createdAt?: DateTimeFilter<"JournalEntry"> | Date | string
+  export type ChoreWhereInput = {
+    AND?: ChoreWhereInput | ChoreWhereInput[]
+    OR?: ChoreWhereInput[]
+    NOT?: ChoreWhereInput | ChoreWhereInput[]
+    id?: IntFilter<"Chore"> | number
+    title?: StringFilter<"Chore"> | string
+    description?: StringNullableFilter<"Chore"> | string | null
+    isDone?: BoolFilter<"Chore"> | boolean
+    dueDate?: DateTimeNullableFilter<"Chore"> | Date | string | null
+    createdAt?: DateTimeFilter<"Chore"> | Date | string
+    updatedAt?: DateTimeFilter<"Chore"> | Date | string
+    assignments?: ChoreAssignmentListRelationFilter
   }
 
-  export type JournalEntryOrderByWithRelationInput = {
+  export type ChoreOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isDone?: SortOrder
+    dueDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
+    assignments?: ChoreAssignmentOrderByRelationAggregateInput
   }
 
-  export type JournalEntryWhereUniqueInput = Prisma.AtLeast<{
+  export type ChoreWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    AND?: JournalEntryWhereInput | JournalEntryWhereInput[]
-    OR?: JournalEntryWhereInput[]
-    NOT?: JournalEntryWhereInput | JournalEntryWhereInput[]
-    title?: StringFilter<"JournalEntry"> | string
-    content?: StringFilter<"JournalEntry"> | string
-    createdAt?: DateTimeFilter<"JournalEntry"> | Date | string
+    AND?: ChoreWhereInput | ChoreWhereInput[]
+    OR?: ChoreWhereInput[]
+    NOT?: ChoreWhereInput | ChoreWhereInput[]
+    title?: StringFilter<"Chore"> | string
+    description?: StringNullableFilter<"Chore"> | string | null
+    isDone?: BoolFilter<"Chore"> | boolean
+    dueDate?: DateTimeNullableFilter<"Chore"> | Date | string | null
+    createdAt?: DateTimeFilter<"Chore"> | Date | string
+    updatedAt?: DateTimeFilter<"Chore"> | Date | string
+    assignments?: ChoreAssignmentListRelationFilter
   }, "id">
 
-  export type JournalEntryOrderByWithAggregationInput = {
+  export type ChoreOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrderInput | SortOrder
+    isDone?: SortOrder
+    dueDate?: SortOrderInput | SortOrder
     createdAt?: SortOrder
-    _count?: JournalEntryCountOrderByAggregateInput
-    _avg?: JournalEntryAvgOrderByAggregateInput
-    _max?: JournalEntryMaxOrderByAggregateInput
-    _min?: JournalEntryMinOrderByAggregateInput
-    _sum?: JournalEntrySumOrderByAggregateInput
+    updatedAt?: SortOrder
+    _count?: ChoreCountOrderByAggregateInput
+    _avg?: ChoreAvgOrderByAggregateInput
+    _max?: ChoreMaxOrderByAggregateInput
+    _min?: ChoreMinOrderByAggregateInput
+    _sum?: ChoreSumOrderByAggregateInput
   }
 
-  export type JournalEntryScalarWhereWithAggregatesInput = {
-    AND?: JournalEntryScalarWhereWithAggregatesInput | JournalEntryScalarWhereWithAggregatesInput[]
-    OR?: JournalEntryScalarWhereWithAggregatesInput[]
-    NOT?: JournalEntryScalarWhereWithAggregatesInput | JournalEntryScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"JournalEntry"> | number
-    title?: StringWithAggregatesFilter<"JournalEntry"> | string
-    content?: StringWithAggregatesFilter<"JournalEntry"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"JournalEntry"> | Date | string
+  export type ChoreScalarWhereWithAggregatesInput = {
+    AND?: ChoreScalarWhereWithAggregatesInput | ChoreScalarWhereWithAggregatesInput[]
+    OR?: ChoreScalarWhereWithAggregatesInput[]
+    NOT?: ChoreScalarWhereWithAggregatesInput | ChoreScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Chore"> | number
+    title?: StringWithAggregatesFilter<"Chore"> | string
+    description?: StringNullableWithAggregatesFilter<"Chore"> | string | null
+    isDone?: BoolWithAggregatesFilter<"Chore"> | boolean
+    dueDate?: DateTimeNullableWithAggregatesFilter<"Chore"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Chore"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Chore"> | Date | string
   }
 
-  export type JournalEntryCreateInput = {
+  export type ChoreAssignmentWhereInput = {
+    AND?: ChoreAssignmentWhereInput | ChoreAssignmentWhereInput[]
+    OR?: ChoreAssignmentWhereInput[]
+    NOT?: ChoreAssignmentWhereInput | ChoreAssignmentWhereInput[]
+    id?: IntFilter<"ChoreAssignment"> | number
+    choreId?: IntFilter<"ChoreAssignment"> | number
+    userId?: IntFilter<"ChoreAssignment"> | number
+    weekStart?: DateTimeFilter<"ChoreAssignment"> | Date | string
+    chore?: XOR<ChoreScalarRelationFilter, ChoreWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ChoreAssignmentOrderByWithRelationInput = {
+    id?: SortOrder
+    choreId?: SortOrder
+    userId?: SortOrder
+    weekStart?: SortOrder
+    chore?: ChoreOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ChoreAssignmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ChoreAssignmentWhereInput | ChoreAssignmentWhereInput[]
+    OR?: ChoreAssignmentWhereInput[]
+    NOT?: ChoreAssignmentWhereInput | ChoreAssignmentWhereInput[]
+    choreId?: IntFilter<"ChoreAssignment"> | number
+    userId?: IntFilter<"ChoreAssignment"> | number
+    weekStart?: DateTimeFilter<"ChoreAssignment"> | Date | string
+    chore?: XOR<ChoreScalarRelationFilter, ChoreWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ChoreAssignmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    choreId?: SortOrder
+    userId?: SortOrder
+    weekStart?: SortOrder
+    _count?: ChoreAssignmentCountOrderByAggregateInput
+    _avg?: ChoreAssignmentAvgOrderByAggregateInput
+    _max?: ChoreAssignmentMaxOrderByAggregateInput
+    _min?: ChoreAssignmentMinOrderByAggregateInput
+    _sum?: ChoreAssignmentSumOrderByAggregateInput
+  }
+
+  export type ChoreAssignmentScalarWhereWithAggregatesInput = {
+    AND?: ChoreAssignmentScalarWhereWithAggregatesInput | ChoreAssignmentScalarWhereWithAggregatesInput[]
+    OR?: ChoreAssignmentScalarWhereWithAggregatesInput[]
+    NOT?: ChoreAssignmentScalarWhereWithAggregatesInput | ChoreAssignmentScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ChoreAssignment"> | number
+    choreId?: IntWithAggregatesFilter<"ChoreAssignment"> | number
+    userId?: IntWithAggregatesFilter<"ChoreAssignment"> | number
+    weekStart?: DateTimeWithAggregatesFilter<"ChoreAssignment"> | Date | string
+  }
+
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: IntFilter<"User"> | number
+    email?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
+    firstName?: StringFilter<"User"> | string
+    lastName?: StringFilter<"User"> | string
+    role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    chores?: ChoreAssignmentListRelationFilter
+  }
+
+  export type UserOrderByWithRelationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    chores?: ChoreAssignmentOrderByRelationAggregateInput
+  }
+
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    email?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    password?: StringFilter<"User"> | string
+    firstName?: StringFilter<"User"> | string
+    lastName?: StringFilter<"User"> | string
+    role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+    chores?: ChoreAssignmentListRelationFilter
+  }, "id" | "email">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"User"> | number
+    email?: StringWithAggregatesFilter<"User"> | string
+    password?: StringWithAggregatesFilter<"User"> | string
+    firstName?: StringWithAggregatesFilter<"User"> | string
+    lastName?: StringWithAggregatesFilter<"User"> | string
+    role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type ChoreCreateInput = {
     title: string
-    content: string
+    description?: string | null
+    isDone?: boolean
+    dueDate?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+    assignments?: ChoreAssignmentCreateNestedManyWithoutChoreInput
   }
 
-  export type JournalEntryUncheckedCreateInput = {
+  export type ChoreUncheckedCreateInput = {
     id?: number
     title: string
-    content: string
+    description?: string | null
+    isDone?: boolean
+    dueDate?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+    assignments?: ChoreAssignmentUncheckedCreateNestedManyWithoutChoreInput
   }
 
-  export type JournalEntryUpdateInput = {
+  export type ChoreUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDone?: BoolFieldUpdateOperationsInput | boolean
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: ChoreAssignmentUpdateManyWithoutChoreNestedInput
   }
 
-  export type JournalEntryUncheckedUpdateInput = {
+  export type ChoreUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDone?: BoolFieldUpdateOperationsInput | boolean
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    assignments?: ChoreAssignmentUncheckedUpdateManyWithoutChoreNestedInput
   }
 
-  export type JournalEntryCreateManyInput = {
+  export type ChoreCreateManyInput = {
     id?: number
     title: string
-    content: string
+    description?: string | null
+    isDone?: boolean
+    dueDate?: Date | string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
-  export type JournalEntryUpdateManyMutationInput = {
+  export type ChoreUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDone?: BoolFieldUpdateOperationsInput | boolean
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type JournalEntryUncheckedUpdateManyInput = {
+  export type ChoreUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDone?: BoolFieldUpdateOperationsInput | boolean
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChoreAssignmentCreateInput = {
+    weekStart: Date | string
+    chore: ChoreCreateNestedOneWithoutAssignmentsInput
+    user: UserCreateNestedOneWithoutChoresInput
+  }
+
+  export type ChoreAssignmentUncheckedCreateInput = {
+    id?: number
+    choreId: number
+    userId: number
+    weekStart: Date | string
+  }
+
+  export type ChoreAssignmentUpdateInput = {
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    chore?: ChoreUpdateOneRequiredWithoutAssignmentsNestedInput
+    user?: UserUpdateOneRequiredWithoutChoresNestedInput
+  }
+
+  export type ChoreAssignmentUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    choreId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChoreAssignmentCreateManyInput = {
+    id?: number
+    choreId: number
+    userId: number
+    weekStart: Date | string
+  }
+
+  export type ChoreAssignmentUpdateManyMutationInput = {
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChoreAssignmentUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    choreId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateInput = {
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chores?: ChoreAssignmentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateInput = {
+    id?: number
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chores?: ChoreAssignmentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUpdateInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chores?: ChoreAssignmentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chores?: ChoreAssignmentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateManyInput = {
+    id?: number
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUpdateManyMutationInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2110,6 +5072,37 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2121,32 +5114,56 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type JournalEntryCountOrderByAggregateInput = {
+  export type ChoreAssignmentListRelationFilter = {
+    every?: ChoreAssignmentWhereInput
+    some?: ChoreAssignmentWhereInput
+    none?: ChoreAssignmentWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type ChoreAssignmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ChoreCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrder
+    isDone?: SortOrder
+    dueDate?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type JournalEntryAvgOrderByAggregateInput = {
+  export type ChoreAvgOrderByAggregateInput = {
     id?: SortOrder
   }
 
-  export type JournalEntryMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    content?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type JournalEntryMinOrderByAggregateInput = {
+  export type ChoreMaxOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
-    content?: SortOrder
+    description?: SortOrder
+    isDone?: SortOrder
+    dueDate?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
-  export type JournalEntrySumOrderByAggregateInput = {
+  export type ChoreMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    isDone?: SortOrder
+    dueDate?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ChoreSumOrderByAggregateInput = {
     id?: SortOrder
   }
 
@@ -2184,6 +5201,46 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2198,12 +5255,153 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type ChoreScalarRelationFilter = {
+    is?: ChoreWhereInput
+    isNot?: ChoreWhereInput
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type ChoreAssignmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    choreId?: SortOrder
+    userId?: SortOrder
+    weekStart?: SortOrder
+  }
+
+  export type ChoreAssignmentAvgOrderByAggregateInput = {
+    id?: SortOrder
+    choreId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type ChoreAssignmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    choreId?: SortOrder
+    userId?: SortOrder
+    weekStart?: SortOrder
+  }
+
+  export type ChoreAssignmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    choreId?: SortOrder
+    userId?: SortOrder
+    weekStart?: SortOrder
+  }
+
+  export type ChoreAssignmentSumOrderByAggregateInput = {
+    id?: SortOrder
+    choreId?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type EnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    role?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type EnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
+  export type ChoreAssignmentCreateNestedManyWithoutChoreInput = {
+    create?: XOR<ChoreAssignmentCreateWithoutChoreInput, ChoreAssignmentUncheckedCreateWithoutChoreInput> | ChoreAssignmentCreateWithoutChoreInput[] | ChoreAssignmentUncheckedCreateWithoutChoreInput[]
+    connectOrCreate?: ChoreAssignmentCreateOrConnectWithoutChoreInput | ChoreAssignmentCreateOrConnectWithoutChoreInput[]
+    createMany?: ChoreAssignmentCreateManyChoreInputEnvelope
+    connect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+  }
+
+  export type ChoreAssignmentUncheckedCreateNestedManyWithoutChoreInput = {
+    create?: XOR<ChoreAssignmentCreateWithoutChoreInput, ChoreAssignmentUncheckedCreateWithoutChoreInput> | ChoreAssignmentCreateWithoutChoreInput[] | ChoreAssignmentUncheckedCreateWithoutChoreInput[]
+    connectOrCreate?: ChoreAssignmentCreateOrConnectWithoutChoreInput | ChoreAssignmentCreateOrConnectWithoutChoreInput[]
+    createMany?: ChoreAssignmentCreateManyChoreInputEnvelope
+    connect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type ChoreAssignmentUpdateManyWithoutChoreNestedInput = {
+    create?: XOR<ChoreAssignmentCreateWithoutChoreInput, ChoreAssignmentUncheckedCreateWithoutChoreInput> | ChoreAssignmentCreateWithoutChoreInput[] | ChoreAssignmentUncheckedCreateWithoutChoreInput[]
+    connectOrCreate?: ChoreAssignmentCreateOrConnectWithoutChoreInput | ChoreAssignmentCreateOrConnectWithoutChoreInput[]
+    upsert?: ChoreAssignmentUpsertWithWhereUniqueWithoutChoreInput | ChoreAssignmentUpsertWithWhereUniqueWithoutChoreInput[]
+    createMany?: ChoreAssignmentCreateManyChoreInputEnvelope
+    set?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    disconnect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    delete?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    connect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    update?: ChoreAssignmentUpdateWithWhereUniqueWithoutChoreInput | ChoreAssignmentUpdateWithWhereUniqueWithoutChoreInput[]
+    updateMany?: ChoreAssignmentUpdateManyWithWhereWithoutChoreInput | ChoreAssignmentUpdateManyWithWhereWithoutChoreInput[]
+    deleteMany?: ChoreAssignmentScalarWhereInput | ChoreAssignmentScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -2212,6 +5410,94 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type ChoreAssignmentUncheckedUpdateManyWithoutChoreNestedInput = {
+    create?: XOR<ChoreAssignmentCreateWithoutChoreInput, ChoreAssignmentUncheckedCreateWithoutChoreInput> | ChoreAssignmentCreateWithoutChoreInput[] | ChoreAssignmentUncheckedCreateWithoutChoreInput[]
+    connectOrCreate?: ChoreAssignmentCreateOrConnectWithoutChoreInput | ChoreAssignmentCreateOrConnectWithoutChoreInput[]
+    upsert?: ChoreAssignmentUpsertWithWhereUniqueWithoutChoreInput | ChoreAssignmentUpsertWithWhereUniqueWithoutChoreInput[]
+    createMany?: ChoreAssignmentCreateManyChoreInputEnvelope
+    set?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    disconnect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    delete?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    connect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    update?: ChoreAssignmentUpdateWithWhereUniqueWithoutChoreInput | ChoreAssignmentUpdateWithWhereUniqueWithoutChoreInput[]
+    updateMany?: ChoreAssignmentUpdateManyWithWhereWithoutChoreInput | ChoreAssignmentUpdateManyWithWhereWithoutChoreInput[]
+    deleteMany?: ChoreAssignmentScalarWhereInput | ChoreAssignmentScalarWhereInput[]
+  }
+
+  export type ChoreCreateNestedOneWithoutAssignmentsInput = {
+    create?: XOR<ChoreCreateWithoutAssignmentsInput, ChoreUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: ChoreCreateOrConnectWithoutAssignmentsInput
+    connect?: ChoreWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutChoresInput = {
+    create?: XOR<UserCreateWithoutChoresInput, UserUncheckedCreateWithoutChoresInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChoresInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ChoreUpdateOneRequiredWithoutAssignmentsNestedInput = {
+    create?: XOR<ChoreCreateWithoutAssignmentsInput, ChoreUncheckedCreateWithoutAssignmentsInput>
+    connectOrCreate?: ChoreCreateOrConnectWithoutAssignmentsInput
+    upsert?: ChoreUpsertWithoutAssignmentsInput
+    connect?: ChoreWhereUniqueInput
+    update?: XOR<XOR<ChoreUpdateToOneWithWhereWithoutAssignmentsInput, ChoreUpdateWithoutAssignmentsInput>, ChoreUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutChoresNestedInput = {
+    create?: XOR<UserCreateWithoutChoresInput, UserUncheckedCreateWithoutChoresInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChoresInput
+    upsert?: UserUpsertWithoutChoresInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutChoresInput, UserUpdateWithoutChoresInput>, UserUncheckedUpdateWithoutChoresInput>
+  }
+
+  export type ChoreAssignmentCreateNestedManyWithoutUserInput = {
+    create?: XOR<ChoreAssignmentCreateWithoutUserInput, ChoreAssignmentUncheckedCreateWithoutUserInput> | ChoreAssignmentCreateWithoutUserInput[] | ChoreAssignmentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChoreAssignmentCreateOrConnectWithoutUserInput | ChoreAssignmentCreateOrConnectWithoutUserInput[]
+    createMany?: ChoreAssignmentCreateManyUserInputEnvelope
+    connect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+  }
+
+  export type ChoreAssignmentUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ChoreAssignmentCreateWithoutUserInput, ChoreAssignmentUncheckedCreateWithoutUserInput> | ChoreAssignmentCreateWithoutUserInput[] | ChoreAssignmentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChoreAssignmentCreateOrConnectWithoutUserInput | ChoreAssignmentCreateOrConnectWithoutUserInput[]
+    createMany?: ChoreAssignmentCreateManyUserInputEnvelope
+    connect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+  }
+
+  export type EnumUserRoleFieldUpdateOperationsInput = {
+    set?: $Enums.UserRole
+  }
+
+  export type ChoreAssignmentUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChoreAssignmentCreateWithoutUserInput, ChoreAssignmentUncheckedCreateWithoutUserInput> | ChoreAssignmentCreateWithoutUserInput[] | ChoreAssignmentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChoreAssignmentCreateOrConnectWithoutUserInput | ChoreAssignmentCreateOrConnectWithoutUserInput[]
+    upsert?: ChoreAssignmentUpsertWithWhereUniqueWithoutUserInput | ChoreAssignmentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChoreAssignmentCreateManyUserInputEnvelope
+    set?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    disconnect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    delete?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    connect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    update?: ChoreAssignmentUpdateWithWhereUniqueWithoutUserInput | ChoreAssignmentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChoreAssignmentUpdateManyWithWhereWithoutUserInput | ChoreAssignmentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChoreAssignmentScalarWhereInput | ChoreAssignmentScalarWhereInput[]
+  }
+
+  export type ChoreAssignmentUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChoreAssignmentCreateWithoutUserInput, ChoreAssignmentUncheckedCreateWithoutUserInput> | ChoreAssignmentCreateWithoutUserInput[] | ChoreAssignmentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChoreAssignmentCreateOrConnectWithoutUserInput | ChoreAssignmentCreateOrConnectWithoutUserInput[]
+    upsert?: ChoreAssignmentUpsertWithWhereUniqueWithoutUserInput | ChoreAssignmentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChoreAssignmentCreateManyUserInputEnvelope
+    set?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    disconnect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    delete?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    connect?: ChoreAssignmentWhereUniqueInput | ChoreAssignmentWhereUniqueInput[]
+    update?: ChoreAssignmentUpdateWithWhereUniqueWithoutUserInput | ChoreAssignmentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChoreAssignmentUpdateManyWithWhereWithoutUserInput | ChoreAssignmentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChoreAssignmentScalarWhereInput | ChoreAssignmentScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2237,6 +5523,36 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2294,6 +5610,56 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -2306,6 +5672,265 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumUserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
+  }
+
+  export type NestedEnumUserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserRole | EnumUserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserRole[] | ListEnumUserRoleFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserRoleWithAggregatesFilter<$PrismaModel> | $Enums.UserRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserRoleFilter<$PrismaModel>
+    _max?: NestedEnumUserRoleFilter<$PrismaModel>
+  }
+
+  export type ChoreAssignmentCreateWithoutChoreInput = {
+    weekStart: Date | string
+    user: UserCreateNestedOneWithoutChoresInput
+  }
+
+  export type ChoreAssignmentUncheckedCreateWithoutChoreInput = {
+    id?: number
+    userId: number
+    weekStart: Date | string
+  }
+
+  export type ChoreAssignmentCreateOrConnectWithoutChoreInput = {
+    where: ChoreAssignmentWhereUniqueInput
+    create: XOR<ChoreAssignmentCreateWithoutChoreInput, ChoreAssignmentUncheckedCreateWithoutChoreInput>
+  }
+
+  export type ChoreAssignmentCreateManyChoreInputEnvelope = {
+    data: ChoreAssignmentCreateManyChoreInput | ChoreAssignmentCreateManyChoreInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChoreAssignmentUpsertWithWhereUniqueWithoutChoreInput = {
+    where: ChoreAssignmentWhereUniqueInput
+    update: XOR<ChoreAssignmentUpdateWithoutChoreInput, ChoreAssignmentUncheckedUpdateWithoutChoreInput>
+    create: XOR<ChoreAssignmentCreateWithoutChoreInput, ChoreAssignmentUncheckedCreateWithoutChoreInput>
+  }
+
+  export type ChoreAssignmentUpdateWithWhereUniqueWithoutChoreInput = {
+    where: ChoreAssignmentWhereUniqueInput
+    data: XOR<ChoreAssignmentUpdateWithoutChoreInput, ChoreAssignmentUncheckedUpdateWithoutChoreInput>
+  }
+
+  export type ChoreAssignmentUpdateManyWithWhereWithoutChoreInput = {
+    where: ChoreAssignmentScalarWhereInput
+    data: XOR<ChoreAssignmentUpdateManyMutationInput, ChoreAssignmentUncheckedUpdateManyWithoutChoreInput>
+  }
+
+  export type ChoreAssignmentScalarWhereInput = {
+    AND?: ChoreAssignmentScalarWhereInput | ChoreAssignmentScalarWhereInput[]
+    OR?: ChoreAssignmentScalarWhereInput[]
+    NOT?: ChoreAssignmentScalarWhereInput | ChoreAssignmentScalarWhereInput[]
+    id?: IntFilter<"ChoreAssignment"> | number
+    choreId?: IntFilter<"ChoreAssignment"> | number
+    userId?: IntFilter<"ChoreAssignment"> | number
+    weekStart?: DateTimeFilter<"ChoreAssignment"> | Date | string
+  }
+
+  export type ChoreCreateWithoutAssignmentsInput = {
+    title: string
+    description?: string | null
+    isDone?: boolean
+    dueDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChoreUncheckedCreateWithoutAssignmentsInput = {
+    id?: number
+    title: string
+    description?: string | null
+    isDone?: boolean
+    dueDate?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChoreCreateOrConnectWithoutAssignmentsInput = {
+    where: ChoreWhereUniqueInput
+    create: XOR<ChoreCreateWithoutAssignmentsInput, ChoreUncheckedCreateWithoutAssignmentsInput>
+  }
+
+  export type UserCreateWithoutChoresInput = {
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutChoresInput = {
+    id?: number
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+    role?: $Enums.UserRole
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutChoresInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutChoresInput, UserUncheckedCreateWithoutChoresInput>
+  }
+
+  export type ChoreUpsertWithoutAssignmentsInput = {
+    update: XOR<ChoreUpdateWithoutAssignmentsInput, ChoreUncheckedUpdateWithoutAssignmentsInput>
+    create: XOR<ChoreCreateWithoutAssignmentsInput, ChoreUncheckedCreateWithoutAssignmentsInput>
+    where?: ChoreWhereInput
+  }
+
+  export type ChoreUpdateToOneWithWhereWithoutAssignmentsInput = {
+    where?: ChoreWhereInput
+    data: XOR<ChoreUpdateWithoutAssignmentsInput, ChoreUncheckedUpdateWithoutAssignmentsInput>
+  }
+
+  export type ChoreUpdateWithoutAssignmentsInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDone?: BoolFieldUpdateOperationsInput | boolean
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChoreUncheckedUpdateWithoutAssignmentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    isDone?: BoolFieldUpdateOperationsInput | boolean
+    dueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUpsertWithoutChoresInput = {
+    update: XOR<UserUpdateWithoutChoresInput, UserUncheckedUpdateWithoutChoresInput>
+    create: XOR<UserCreateWithoutChoresInput, UserUncheckedCreateWithoutChoresInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutChoresInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutChoresInput, UserUncheckedUpdateWithoutChoresInput>
+  }
+
+  export type UserUpdateWithoutChoresInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutChoresInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChoreAssignmentCreateWithoutUserInput = {
+    weekStart: Date | string
+    chore: ChoreCreateNestedOneWithoutAssignmentsInput
+  }
+
+  export type ChoreAssignmentUncheckedCreateWithoutUserInput = {
+    id?: number
+    choreId: number
+    weekStart: Date | string
+  }
+
+  export type ChoreAssignmentCreateOrConnectWithoutUserInput = {
+    where: ChoreAssignmentWhereUniqueInput
+    create: XOR<ChoreAssignmentCreateWithoutUserInput, ChoreAssignmentUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChoreAssignmentCreateManyUserInputEnvelope = {
+    data: ChoreAssignmentCreateManyUserInput | ChoreAssignmentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChoreAssignmentUpsertWithWhereUniqueWithoutUserInput = {
+    where: ChoreAssignmentWhereUniqueInput
+    update: XOR<ChoreAssignmentUpdateWithoutUserInput, ChoreAssignmentUncheckedUpdateWithoutUserInput>
+    create: XOR<ChoreAssignmentCreateWithoutUserInput, ChoreAssignmentUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChoreAssignmentUpdateWithWhereUniqueWithoutUserInput = {
+    where: ChoreAssignmentWhereUniqueInput
+    data: XOR<ChoreAssignmentUpdateWithoutUserInput, ChoreAssignmentUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ChoreAssignmentUpdateManyWithWhereWithoutUserInput = {
+    where: ChoreAssignmentScalarWhereInput
+    data: XOR<ChoreAssignmentUpdateManyMutationInput, ChoreAssignmentUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ChoreAssignmentCreateManyChoreInput = {
+    id?: number
+    userId: number
+    weekStart: Date | string
+  }
+
+  export type ChoreAssignmentUpdateWithoutChoreInput = {
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutChoresNestedInput
+  }
+
+  export type ChoreAssignmentUncheckedUpdateWithoutChoreInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChoreAssignmentUncheckedUpdateManyWithoutChoreInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChoreAssignmentCreateManyUserInput = {
+    id?: number
+    choreId: number
+    weekStart: Date | string
+  }
+
+  export type ChoreAssignmentUpdateWithoutUserInput = {
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+    chore?: ChoreUpdateOneRequiredWithoutAssignmentsNestedInput
+  }
+
+  export type ChoreAssignmentUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    choreId?: IntFieldUpdateOperationsInput | number
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChoreAssignmentUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    choreId?: IntFieldUpdateOperationsInput | number
+    weekStart?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

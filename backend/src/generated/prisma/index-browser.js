@@ -117,11 +117,32 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.JournalEntryScalarFieldEnum = {
+exports.Prisma.ChoreScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  content: 'content',
-  createdAt: 'createdAt'
+  description: 'description',
+  isDone: 'isDone',
+  dueDate: 'dueDate',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChoreAssignmentScalarFieldEnum = {
+  id: 'id',
+  choreId: 'choreId',
+  userId: 'userId',
+  weekStart: 'weekStart'
+};
+
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  role: 'role',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -134,9 +155,21 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.UserRole = exports.$Enums.UserRole = {
+  PARENT: 'PARENT',
+  CHILD: 'CHILD',
+  ADMIN: 'ADMIN',
+  GUEST: 'GUEST'
+};
 
 exports.Prisma.ModelName = {
-  JournalEntry: 'JournalEntry'
+  Chore: 'Chore',
+  ChoreAssignment: 'ChoreAssignment',
+  User: 'User'
 };
 
 /**
